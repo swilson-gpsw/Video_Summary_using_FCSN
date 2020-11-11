@@ -69,9 +69,7 @@ if __name__ == "__main__":
             score = list(score)
             datum_id = fi.split('/')[-1].split('.')[0]
             print(datum_id)
-            print(score.shape)
             print(type(score))
-            sc
             output = {
                 'time': time,
                 'score': 0,
