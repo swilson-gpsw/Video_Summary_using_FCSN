@@ -64,11 +64,13 @@ if __name__ == "__main__":
             time, data = load_data(fi)
             data = torch.tensor(data)
             score = infer_model(model, data, config)
+            score = score.cpu()
+            score = score.numpy()
             datum_id = fi.split('/')[-1].split('.')[0]
             print(datum_id)
             output = {
                 'time': np.array(time),
-                'score': score.numpy(),
+                'score': score,
                 'datum_id': datum_id
             }
             line = json.dumps(output) + '/n'
