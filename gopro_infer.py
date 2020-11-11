@@ -15,7 +15,7 @@ Access
 
 def load_data(file):
 
-    with open(data_file, 'r') as fid:
+    with open(file, 'r') as fid:
         fid.readline()
         meta = fid.readline()[1:]
         frame_count, fps = np.array(meta.split(','), dtype = 'float')
@@ -48,11 +48,11 @@ def infer_model(model, data):
     print(pred_score)
 
 if __name__ == "__main__":
-    data_fol = "/Users/swilson/Projects/CVPR_20/data/"
-    files = [data_fol + fi for fi in os.listdir(data_fol]
+    # data_fol = "/Users/swilson/Projects/CVPR_20/data/"
+    # files = [data_fol + fi for fi in os.listdir(data_fol)]
     files = ['/mnt/hd02/CVPR/h5/59e5ba87e704cd000163695e.csv']
 
     model = load_model()
     for fi in files:
-        time, data = load_data(data_file)
+        time, data = load_data(fi)
         data = torch.tensor(data)
