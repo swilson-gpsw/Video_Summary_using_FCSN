@@ -41,7 +41,7 @@ def load_model(model_path = 'save_dir/epoch-49.pkl'):
 
 def infer_model(model, data, config):
     feature = torch.tensor(data)
-
+    print(feature.shape)
     if config.gpu:
         feature = feature.cuda()
     pred_score = model(feature.unsqueeze(0)).squeeze(0)
