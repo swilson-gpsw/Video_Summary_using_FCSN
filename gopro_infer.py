@@ -56,3 +56,5 @@ if __name__ == "__main__":
     for fi in files:
         time, data = load_data(fi)
         data = torch.tensor(data)
+
+        infer_model(model, data)
