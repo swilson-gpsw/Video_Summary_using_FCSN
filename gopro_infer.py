@@ -51,14 +51,14 @@ def infer_model(model, data, config):
     return pred_score
 
 if __name__ == "__main__":
-    data_fol = "/mnt/hd02/CVPR/h5/"
-    files = [data_fol + fi for fi in os.listdir(data_fol)]
-    # files = ['/mnt/hd02/CVPR/h5/59e5ba87e704cd000163695e.csv']
+    # data_fol = "/mnt/hd02/CVPR/h5/"
+    # files = [data_fol + fi for fi in os.listdir(data_fol)]
+    files = ['/mnt/hd02/CVPR/h5/59e5ba87e704cd000163695e.csv']
 
     results_fol = '/mnt/hd02/CVPR/results/'
     model = load_model()
     config = Config(mode='test')
-    with open(results_fol + 'trial1.json' as fod):
+    with open(results_fol + 'trial1.json' as fod)[1:]:
         for fi in files:
             time, data = load_data(fi)
             data = torch.tensor(data)
