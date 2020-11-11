@@ -35,10 +35,10 @@ def load_model(model_path = 'save_dir/epoch-49.pkl'):
 
 
 if __name__ == "__main__":
-    data_fol = "/Users/swilson/Projects/CVPR_20/data/"
-    for fi in os.listdir(data_fol):
-        data_file = data_fol + fi
-
-        time, data = load_data(data_file)
+    # data_fol = "/Users/swilson/Projects/CVPR_20/data/"
+    # for fi in os.listdir(data_fol)[]:
+    #     data_file = data_fol + fi
+    #
+    #     time, data = load_data(data_file)
 
     model = load_model()
