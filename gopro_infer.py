@@ -68,7 +68,7 @@ if __name__ == "__main__":
             print(datum_id)
             output = {
                 'time': np.array(time),
-                'score': np.array(score.cpu()),
+                'score': score.numpy(),
                 'datum_id': datum_id
             }
             line = json.dumps(output) + '/n'
