@@ -66,7 +66,7 @@ if __name__ == "__main__":
             score = infer_model(model, data, config)
             score = score.cpu()
             score = score.detach().numpy()
-            score = list(score)
+            score = list(score.astype(float))
             datum_id = fi.split('/')[-1].split('.')[0]
             print(datum_id)
             print(type(score))
