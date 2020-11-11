@@ -1,6 +1,7 @@
 import numpy as np
 import os
 import torch
+from fcsn import FCSN
 
 
 """
@@ -31,7 +32,10 @@ def load_data(file):
     return time, data
 
 def load_model(model_path = 'save_dir/epoch-49.pkl'):
-    return torch.load(model_path)
+    model = FCSN()
+    model.load_state_dict(torch.load(model_path))
+    model.eval()
+    return model
 
 
 if __name__ == "__main__":
