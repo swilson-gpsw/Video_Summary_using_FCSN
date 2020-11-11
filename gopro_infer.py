@@ -71,5 +71,5 @@ if __name__ == "__main__":
                 'score': score,
                 'datum_id': datum_id
             }
-            line = json.dums(output) + '/n'
+            line = json.dumps(output) + '/n'
             fod.write(line)
