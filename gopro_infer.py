@@ -71,9 +71,9 @@ if __name__ == "__main__":
             print(score.shape)
             print(score)
             output = {
-                'time': 0,
+                'time': time,
                 'score': 0,
-                'datum_id': 0
+                'datum_id': datum_id
             }
             line = json.dumps(output) + '/n'
             fod.write(line)
