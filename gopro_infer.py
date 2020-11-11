@@ -72,7 +72,7 @@ if __name__ == "__main__":
             print(type(score))
             output = {
                 'time': time,
-                'score': 0,
+                'score': score,
                 'datum_id': datum_id
             }
             line = json.dumps(output) + '/n'
