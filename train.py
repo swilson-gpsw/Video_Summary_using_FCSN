@@ -105,6 +105,10 @@ class Solver(object):
 
         with h5py.File(self.config.data_path) as data_file:
             for feature, label, idx in tqdm(self.test_dataset, desc='Evaluate', ncols=80, leave=False):
+                print(type(feature))
+                print(feature.shape)
+                print(feature)
+                deadbeef
                 if self.config.gpu:
                     feature = feature.cuda()
                 pred_score = self.model(feature.unsqueeze(0)).squeeze(0)
@@ -119,10 +123,10 @@ class Solver(object):
                 table.add_row([idx] + eval_res)
 
                 out_dict[idx] = {
-                    'pred_score': pred_score, 
+                    'pred_score': pred_score,
                     'pred_selected': pred_selected, 'pred_summary': pred_summary
                     }
-        
+
         score_save_path = self.config.score_dir + '/epoch-{}.json'.format(epoch_i)
         with open(score_save_path, 'w') as f:
             tqdm.write('Save score at {}'.format(str(score_save_path)))
