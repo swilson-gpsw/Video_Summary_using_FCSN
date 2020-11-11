@@ -69,6 +69,7 @@ if __name__ == "__main__":
             datum_id = fi.split('/')[-1].split('.')[0]
             print(datum_id)
             print(score.shape)
+            print(score)
             output = {
                 'time': time,
                 'score': list(score),
