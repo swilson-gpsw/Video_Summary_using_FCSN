@@ -68,8 +68,7 @@ if __name__ == "__main__":
             score = score.detach().numpy()
             score = list(score.astype(float))
             datum_id = fi.split('/')[-1].split('.')[0]
-            print(datum_id)
-            print(type(score))
+            
             output = {
                 'time': time,
                 'score': score,
