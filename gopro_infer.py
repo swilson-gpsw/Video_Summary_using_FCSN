@@ -44,6 +44,7 @@ def infer_model(model, data, config):
     # print(feature.shape)
     if config.gpu:
         feature = feature.cuda()
+        model = model.cuda()
     pred_score = model(feature.unsqueeze(0)).squeeze(0)
     pred_score = torch.softmax(pred_score, dim=0)[1]
 
