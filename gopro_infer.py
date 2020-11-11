@@ -71,7 +71,7 @@ if __name__ == "__main__":
             print(score.shape)
             output = {
                 'time': time,
-                'score': score,
+                'score': list(score),
                 'datum_id': datum_id
             }
             line = json.dumps(output) + '/n'
