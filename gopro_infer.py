@@ -68,8 +68,9 @@ if __name__ == "__main__":
             score = score.detach().numpy()
             datum_id = fi.split('/')[-1].split('.')[0]
             print(datum_id)
+            print(score.shape)
             output = {
-                'time': np.array(time),
+                'time': time,
                 'score': score,
                 'datum_id': datum_id
             }
