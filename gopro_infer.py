@@ -65,9 +65,10 @@ if __name__ == "__main__":
             data = torch.tensor(data)
             score = infer_model(model, data, config)
             datum_id = fi.split('/')[-1].split('.')[0]
+            print(datum_id)
             output = {
                 'time': np.array(time),
-                'score': np.array(score),
+                'score': np.array(score.cpu()),
                 'datum_id': datum_id
             }
             line = json.dumps(output) + '/n'
