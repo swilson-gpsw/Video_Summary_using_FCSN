@@ -66,10 +66,12 @@ if __name__ == "__main__":
             score = infer_model(model, data, config)
             score = score.cpu()
             score = score.detach().numpy()
+            score = list(score)
             datum_id = fi.split('/')[-1].split('.')[0]
             print(datum_id)
             print(score.shape)
-            print(score)
+            print(type(score))
+            sc
             output = {
                 'time': time,
                 'score': 0,
