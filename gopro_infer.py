@@ -40,7 +40,7 @@ def load_model(model_path = 'save_dir/epoch-49.pkl'):
     return model
 
 def infer_model(model, data, config):
-    feature = torch.tensor(data.T)
+    feature = torch.tensor(data.T, dtype = torch.float32)
     # print(feature.shape)
     if config.gpu:
         feature = feature.cuda()
