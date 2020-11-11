@@ -3,6 +3,8 @@ import os
 import torch
 from fcsn import FCSN
 
+from config import Config
+
 
 """
 Load trained model
@@ -37,12 +39,12 @@ def load_model(model_path = 'save_dir/epoch-49.pkl'):
     model.eval()
     return model
 
-def infer_model(model, data):
+def infer_model(model, data, config):
     feature = torch.tensor(data)
 
-    if self.config.gpu:
+    if config.gpu:
         feature = feature.cuda()
-    pred_score = self.model(feature.unsqueeze(0)).squeeze(0)
+    pred_score = model(feature.unsqueeze(0)).squeeze(0)
     pred_score = torch.softmax(pred_score, dim=0)[1]
 
     print(pred_score)
@@ -53,8 +55,9 @@ if __name__ == "__main__":
     files = ['/mnt/hd02/CVPR/h5/59e5ba87e704cd000163695e.csv']
 
     model = load_model()
+    config = Config(mode='test')
     for fi in files:
         time, data = load_data(fi)
         data = torch.tensor(data)
 
-        infer_model(model, data)
+        infer_model(model, data, config)
