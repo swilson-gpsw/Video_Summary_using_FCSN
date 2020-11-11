@@ -37,12 +37,22 @@ def load_model(model_path = 'save_dir/epoch-49.pkl'):
     model.eval()
     return model
 
+def infer_model(model, data):
+    feature = torch.tensor(data)
+
+    if self.config.gpu:
+        feature = feature.cuda()
+    pred_score = self.model(feature.unsqueeze(0)).squeeze(0)
+    pred_score = torch.softmax(pred_score, dim=0)[1]
+
+    print(pred_score)
 
 if __name__ == "__main__":
-    # data_fol = "/Users/swilson/Projects/CVPR_20/data/"
-    # for fi in os.listdir(data_fol)[]:
-    #     data_file = data_fol + fi
-    #
-    #     time, data = load_data(data_file)
+    data_fol = "/Users/swilson/Projects/CVPR_20/data/"
+    files = [data_fol + fi for fi in os.listdir(data_fol]
+    files = ['/mnt/hd02/CVPR/h5/59e5ba87e704cd000163695e.csv']
 
     model = load_model()
+    for fi in files:
+        time, data = load_data(data_file)
+        data = torch.tensor(data)

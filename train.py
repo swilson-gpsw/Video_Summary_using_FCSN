@@ -105,10 +105,6 @@ class Solver(object):
 
         with h5py.File(self.config.data_path) as data_file:
             for feature, label, idx in tqdm(self.test_dataset, desc='Evaluate', ncols=80, leave=False):
-                print(type(feature))
-                print(feature.shape)
-                print(feature)
-                deadbeef
                 if self.config.gpu:
                     feature = feature.cuda()
                 pred_score = self.model(feature.unsqueeze(0)).squeeze(0)
