@@ -58,7 +58,7 @@ if __name__ == "__main__":
     results_fol = '/mnt/hd02/CVPR/results/'
     model = load_model()
     config = Config(mode='test')
-    with open(results_fol + 'trial1.json' as fod)[1:]:
+    with open(results_fol + 'trial1.json','w') as fod:
         for fi in files:
             time, data = load_data(fi)
             data = torch.tensor(data)
