@@ -65,7 +65,7 @@ if __name__ == "__main__":
             data = torch.tensor(data)
             score = infer_model(model, data, config)
             score = score.cpu()
-            score = score.numpy()
+            score = score.detach().numpy()
             datum_id = fi.split('/')[-1].split('.')[0]
             print(datum_id)
             output = {
