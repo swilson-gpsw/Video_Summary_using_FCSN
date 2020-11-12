@@ -56,9 +56,9 @@ def infer_model(model, data, config):
     return score
 
 if __name__ == "__main__":
-    # data_fol = "/mnt/hd02/CVPR/h5/"
-    # files = [data_fol + fi for fi in os.listdir(data_fol)]
-    files = ['/mnt/hd02/CVPR/h5/59e5ba87e704cd000163695e.csv']
+    data_fol = "/mnt/hd02/CVPR/h5/"
+    files = [data_fol + fi for fi in os.listdir(data_fol)]
+    # files = ['/mnt/hd02/CVPR/h5/59e5ba87e704cd000163695e.csv']
 
     results_fol = '/mnt/hd02/CVPR/results/'
     model = load_model()
