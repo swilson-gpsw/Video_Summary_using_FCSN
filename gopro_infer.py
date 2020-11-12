@@ -49,26 +49,28 @@ def infer_model(model, data, config):
     pred_score = model(feature.unsqueeze(0)).squeeze(0)
     pred_score = torch.softmax(pred_score, dim=0)[1]
 
+    score = pred_score.cpu()
+    score = score.detach().numpy()
+    score = list(score.astype(float))
+
     return pred_score
 
 if __name__ == "__main__":
-    # data_fol = "/mnt/hd02/CVPR/h5/"
-    # files = [data_fol + fi for fi in os.listdir(data_fol)]
-    files = ['/mnt/hd02/CVPR/h5/59e5ba87e704cd000163695e.csv']
+    data_fol = "/mnt/hd02/CVPR/h5/"
+    files = [data_fol + fi for fi in os.listdir(data_fol)]
+    # files = ['/mnt/hd02/CVPR/h5/59e5ba87e704cd000163695e.csv']
 
     results_fol = '/mnt/hd02/CVPR/results/'
     model = load_model()
     config = Config(mode='test')
-    with open(results_fol + 'trial1.json','w') as fod:
+    with open(results_fol + 'run_results.json','w') as fod:
         for fi in files:
             time, data = load_data(fi)
+
             data = torch.tensor(data)
-            score = infer_model(model, data, config)
-            score = score.cpu()
-            score = score.detach().numpy()
-            score = list(score.astype(float))
-            datum_id = fi.split('/')[-1].split('.')[0]
             
+            score = infer_model(model, data, config)
+            datum_id = fi.split('/')[-1].split('.')[0]
             output = {
                 'time': time,
                 'score': score,
