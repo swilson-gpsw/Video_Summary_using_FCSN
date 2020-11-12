@@ -56,18 +56,18 @@ def infer_model(model, data, config):
     return pred_score
 
 if __name__ == "__main__":
-    data_fol = "/mnt/hd02/CVPR/h5/"
-    files = [data_fol + fi for fi in os.listdir(data_fol)]
-    # files = ['/mnt/hd02/CVPR/h5/59e5ba87e704cd000163695e.csv']
+    # data_fol = "/mnt/hd02/CVPR/h5/"
+    # files = [data_fol + fi for fi in os.listdir(data_fol)]
+    files = ['/mnt/hd02/CVPR/h5/59e5ba87e704cd000163695e.csv']
 
     results_fol = '/mnt/hd02/CVPR/results/'
     model = load_model()
     config = Config(mode='test')
     for fi in files:
-        time, data = load_data(fi)
-
-        data = torch.tensor(data)
         try:
+
+            time, data = load_data(fi)
+            data = torch.tensor(data)
             score = infer_model(model, data, config)
             datum_id = fi.split('/')[-1].split('.')[0]
             output = {
@@ -80,6 +80,6 @@ if __name__ == "__main__":
             with open(results_fol + datum_id + '_results.json','w') as fod:
                 fod.write(line)
             print('.', end = "")
-            
+
         except:
             print('x', end = "")
