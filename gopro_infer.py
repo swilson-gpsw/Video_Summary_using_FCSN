@@ -80,11 +80,12 @@ if __name__ == "__main__":
         try:
             time, data = load_data(fi)
             data = torch.tensor(data)
-            score = infer_model(model, data, config)
+            score0, score1 = infer_model(model, data, config)
             datum_id = fi.split('/')[-1].split('.')[0]
             output = {
                 'time': time,
-                'score': score,
+                'score0': score0,
+                'score1': score1,
                 'datum_id': datum_id
             }
             line = json.dumps(output) + '/n'
