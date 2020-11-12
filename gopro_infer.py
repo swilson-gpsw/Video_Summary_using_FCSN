@@ -46,7 +46,9 @@ def infer_model(model, data, config):
     if config.gpu:
         feature = feature.cuda()
         model = model.cuda()
-    pred_score = model(feature.unsqueeze(0)).squeeze(0)
+    feature = feature.unsqueeze(0)
+    print(feature.shape)
+    pred_score = model(feature).squeeze(0)
     pred_score = torch.softmax(pred_score, dim=0)[1]
 
     score = pred_score.cpu()
@@ -56,15 +58,15 @@ def infer_model(model, data, config):
     return score
 
 if __name__ == "__main__":
-    data_fol = "/mnt/hd02/CVPR/h5/"
-    files = [data_fol + fi for fi in os.listdir(data_fol)]
-    # files = ['/mnt/hd02/CVPR/h5/59eef451e704cd0001644bd5.csv']
+    # data_fol = "/mnt/hd02/CVPR/h5/"
+    # files = [data_fol + fi for fi in os.listdir(data_fol)]
+    files = ['/mnt/hd02/CVPR/h5/594457e9546fd50001e4f637.csv']
 
     results_fol = '/mnt/hd02/CVPR/results/'
     model = load_model()
     config = Config(mode='test')
     for fi in files:
-        if os.path.getsize(fi) < 1000:
+        if os.path.getsize(fi) < 8000:
             continue
         print(fi.split('/')[-1], end = '')
         time, data = load_data(fi)
