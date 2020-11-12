@@ -67,15 +67,19 @@ if __name__ == "__main__":
         time, data = load_data(fi)
 
         data = torch.tensor(data)
+        try:
+            score = infer_model(model, data, config)
+            datum_id = fi.split('/')[-1].split('.')[0]
+            output = {
+                'time': time,
+                'score': score,
+                'datum_id': datum_id
+            }
+            line = json.dumps(output) + '/n'
 
-        score = infer_model(model, data, config)
-        datum_id = fi.split('/')[-1].split('.')[0]
-        output = {
-            'time': time,
-            'score': score,
-            'datum_id': datum_id
-        }
-        line = json.dumps(output) + '/n'
-
-        with open(results_fol + datum_id + '_results.json','w') as fod:
-            fod.write(line)
+            with open(results_fol + datum_id + '_results.json','w') as fod:
+                fod.write(line)
+            print('.', end = "")
+            
+        except:
+            print('x', end = "")
