@@ -54,11 +54,11 @@ def infer_model(model, data, config):
     score = torch.softmax(pred_score, dim=0)
 
     score1 = score[1].cpu()
-    score1 = score.detach().numpy()
+    score1 = score1.detach().numpy()
     score1 = list(score.astype(float))
 
     score0 = score[0].cpu()
-    score0 = score.detach().numpy()
+    score0 = score0.detach().numpy()
     score0 = list(score.astype(float))
 
 
@@ -77,20 +77,21 @@ if __name__ == "__main__":
         if os.path.getsize(fi) < 8000:
             continue
         print(fi.split('/')[-1], end = '')
-        time, data = load_data(fi)
-        data = torch.tensor(data)
-        score0, score1 = infer_model(model, data, config)
-        datum_id = fi.split('/')[-1].split('.')[0]
-        output = {
-            'time': time,
-            'score0': score0,
-            'score1': score1,
-            'datum_id': datum_id
-        }
-        line = json.dumps(output) + '/n'
+        try:
+            time, data = load_data(fi)
+            data = torch.tensor(data)
+            score0, score1 = infer_model(model, data, config)
+            datum_id = fi.split('/')[-1].split('.')[0]
+            output = {
+                'time': time,
+                'score0': score0,
+                'score1': score1,
+                'datum_id': datum_id
+            }
+            line = json.dumps(output) + '/n'
 
-        with open(results_fol + datum_id + '_results.json','w') as fod:
-            fod.write(line)
-        print('...Success!')
-        # except:
-        #     print('...Failuer!')
+            with open(results_fol + datum_id + '_results.json','w') as fod:
+                fod.write(line)
+            print('...Success!')
+        except:
+            print('...Failuer!')
