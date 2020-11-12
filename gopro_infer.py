@@ -64,17 +64,21 @@ if __name__ == "__main__":
     model = load_model()
     config = Config(mode='test')
     for fi in files:
-        time, data = load_data(fi)
-        data = torch.tensor(data)
-        score = infer_model(model, data, config)
-        datum_id = fi.split('/')[-1].split('.')[0]
-        output = {
-            'time': time,
-            'score': score,
-            'datum_id': datum_id
-        }
-        line = json.dumps(output) + '/n'
+        print(fi.split('/')[-1], end = '')
+        try:
+            time, data = load_data(fi)
+            data = torch.tensor(data)
+            score = infer_model(model, data, config)
+            datum_id = fi.split('/')[-1].split('.')[0]
+            output = {
+                'time': time,
+                'score': score,
+                'datum_id': datum_id
+            }
+            line = json.dumps(output) + '/n'
 
-        with open(results_fol + datum_id + '_results.json','w') as fod:
-            fod.write(line)
-        print('.', end = "")
+            with open(results_fol + datum_id + '_results.json','w') as fod:
+                fod.write(line)
+            print('...Success!')
+        except:
+            print('...Failure!')
