@@ -56,29 +56,26 @@ def infer_model(model, data, config):
     return score
 
 if __name__ == "__main__":
-    data_fol = "/mnt/hd02/CVPR/h5/"
-    files = [data_fol + fi for fi in os.listdir(data_fol)]
-    # files = ['/mnt/hd02/CVPR/h5/59e5ba87e704cd000163695e.csv']
+    # data_fol = "/mnt/hd02/CVPR/h5/"
+    # files = [data_fol + fi for fi in os.listdir(data_fol)]
+    files = ['/mnt/hd02/CVPR/h5/59eef451e704cd0001644bd5.csv']
 
     results_fol = '/mnt/hd02/CVPR/results/'
     model = load_model()
     config = Config(mode='test')
     for fi in files:
         print(fi.split('/')[-1], end = '')
-        try:
-            time, data = load_data(fi)
-            data = torch.tensor(data)
-            score = infer_model(model, data, config)
-            datum_id = fi.split('/')[-1].split('.')[0]
-            output = {
-                'time': time,
-                'score': score,
-                'datum_id': datum_id
-            }
-            line = json.dumps(output) + '/n'
+        time, data = load_data(fi)
+        data = torch.tensor(data)
+        score = infer_model(model, data, config)
+        datum_id = fi.split('/')[-1].split('.')[0]
+        output = {
+            'time': time,
+            'score': score,
+            'datum_id': datum_id
+        }
+        line = json.dumps(output) + '/n'
 
-            with open(results_fol + datum_id + '_results.json','w') as fod:
-                fod.write(line)
-            print('...Success!')
-        except:
-            print('...Failure!')
+        with open(results_fol + datum_id + '_results.json','w') as fod:
+            fod.write(line)
+        print('...Success!')
