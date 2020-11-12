@@ -46,6 +46,8 @@ def infer_model(model, data, config):
     if config.gpu:
         feature = feature.cuda()
         model = model.cuda()
+    print()
+    print(feature.shape)
     feature = feature.unsqueeze(0)
     print(feature.shape)
     pred_score = model(feature).squeeze(0)
