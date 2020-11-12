@@ -55,11 +55,11 @@ def infer_model(model, data, config):
 
     score1 = score[1].cpu()
     score1 = score1.detach().numpy()
-    score1 = list(score.astype(float))
+    score1 = list(score1.astype(float))
 
     score0 = score[0].cpu()
     score0 = score0.detach().numpy()
-    score0 = list(score.astype(float))
+    score0 = list(score0.astype(float))
 
 
 
