@@ -64,6 +64,8 @@ if __name__ == "__main__":
     model = load_model()
     config = Config(mode='test')
     for fi in files:
+        if os.path.getsize(fi) < 1000:
+            continue
         print(fi.split('/')[-1], end = '')
         time, data = load_data(fi)
         data = torch.tensor(data)
