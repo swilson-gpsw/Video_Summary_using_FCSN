@@ -53,7 +53,7 @@ def infer_model(model, data, config):
     score = score.detach().numpy()
     score = list(score.astype(float))
 
-    return pred_score
+    return score
 
 if __name__ == "__main__":
     # data_fol = "/mnt/hd02/CVPR/h5/"
