@@ -50,13 +50,20 @@ def infer_model(model, data, config):
     feature = feature[:,:dim1]
     feature = feature.unsqueeze(0)
     pred_score = model(feature).squeeze(0)
-    pred_score = torch.softmax(pred_score, dim=0)[1]
 
-    score = pred_score.cpu()
-    score = score.detach().numpy()
-    score = list(score.astype(float))
+    score = torch.softmax(pred_score, dim=0)
 
-    return score
+    score1 = score[1].cpu()
+    score1 = score.detach().numpy()
+    score1 = list(score.astype(float))
+
+    score0 = score[0].cpu()
+    score0 = score.detach().numpy()
+    score0 = list(score.astype(float))
+
+
+
+    return score0, score1
 
 if __name__ == "__main__":
     data_fol = "/mnt/hd02/CVPR/h5/"
