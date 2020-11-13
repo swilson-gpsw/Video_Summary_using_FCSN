@@ -118,8 +118,8 @@ def video2fea(video_path, data_folder):
     dname = data_folder + idx + '.csv'
     header = """frame_count, fps
     %i, %i
-
-    """%(length, fps)  + ''.join(['%f, ' for i in range(len(times))]) %(tuple(times)) + """
+    length of time: %i
+    """%(length, fps, %len(times))  + ''.join(['%f, ' for i in range(len(times))]) %(tuple(times)) + """
 
     features:
     """
