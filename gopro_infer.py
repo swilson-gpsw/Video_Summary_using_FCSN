@@ -26,7 +26,6 @@ def load_data(file):
         fid.readline()
         meta = fid.readline()[1:]
         fid.readline()
-        fid.readline()
         time = convert_time(fid.readline())
         frame_count, fps = np.array(meta.split(','), dtype = 'float')
         ratio = frame_count//320
