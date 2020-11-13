@@ -119,7 +119,7 @@ def video2fea(video_path, data_folder):
     header = """frame_count, fps
     %i, %i
     length of time: %i
-    """%(length, fps, %len(times))  + ''.join(['%f, ' for i in range(len(times))]) %(tuple(times)) + """
+    """%(length, fps, len(times))  + ''.join(['%f, ' for i in range(len(times))]) %(tuple(times)) + """
 
     features:
     """
