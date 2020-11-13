@@ -31,7 +31,7 @@ def load_data(file):
         ratio = frame_count//320
         frame_no = 1
         data = None
-        for line in fid.readlines()[2:]:
+        for line in fid.readlines()[4:]:
             d_line = np.array(line.split(','), dtype = 'float')
             data = d_line if data is None else np.vstack((data, d_line))
     return time, data
