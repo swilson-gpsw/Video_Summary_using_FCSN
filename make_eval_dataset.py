@@ -114,7 +114,7 @@ def video2fea(video_path, data_folder):
         success, frame = video.read()
 
     fea = fea[:320]
-    time = time[:320]
+    times = time[:320]
     dname = data_folder + idx + '.csv'
     header = """frame_count, fps
     %i, %i
