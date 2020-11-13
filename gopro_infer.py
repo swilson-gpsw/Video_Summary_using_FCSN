@@ -17,7 +17,7 @@ Access
 """
 
 def convert_time(line):
-    t = np.array(time[1:-4].split(','), dtype = float)
+    t = np.array(line[1:-4].split(','), dtype = float)
     return list(t)
 
 def load_data(file):
