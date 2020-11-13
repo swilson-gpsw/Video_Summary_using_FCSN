@@ -16,20 +16,23 @@ Access
 
 """
 
+def convert_time(line):
+    t = np.array(time[1:-4].split(','), dtype = float)
+    return list(t)
+
 def load_data(file):
 
     with open(file, 'r') as fid:
         fid.readline()
         meta = fid.readline()[1:]
+        fid.readline()
+        fid.readline()
+        time = convert_time(line)
         frame_count, fps = np.array(meta.split(','), dtype = 'float')
         ratio = frame_count//320
         frame_no = 1
-        time = []
         data = None
         for line in fid.readlines()[2:]:
-            frame_no += ratio
-            time.append(frame_no/fps)
-
             d_line = np.array(line.split(','), dtype = 'float')
             data = d_line if data is None else np.vstack((data, d_line))
     return time, data
@@ -66,11 +69,11 @@ def infer_model(model, data, config):
     return score0, score1
 
 if __name__ == "__main__":
-    data_fol = "/mnt/hd02/CVPR/csv_div320/"
-    files = [data_fol + fi for fi in os.listdir(data_fol)]
-    # files = ['/mnt/hd02/CVPR/h5/594457e9546fd50001e4f637.csv']
+    # data_fol = "/mnt/hd02/CVPR/csv_div320/"
+    # files = [data_fol + fi for fi in os.listdir(data_fol)]
+    files = ['/mnt/hd02/CVPR/h5/594457e9546fd50001e4f637.csv']
 
-    results_fol = '/mnt/hd02/CVPR/results/'
+    results_fol = '/mnt/hd02/CVPR/results_timed/'
     model = load_model()
     config = Config(mode='test')
     for fi in files:
