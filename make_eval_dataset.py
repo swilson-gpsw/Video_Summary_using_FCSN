@@ -132,7 +132,7 @@ def video2fea(video_path, data_folder):
         np.savetxt(dname, fea, delimiter = ",", header = header)
 
 
-def make_dataset(video_dir, data_folder):
+def make_dataset(video_dir, data_folder, replace = False):
     video_dir = Path(video_dir).resolve()
     video_list = list(video_dir.glob('*.MP4'))
     video_list.sort()
@@ -140,13 +140,13 @@ def make_dataset(video_dir, data_folder):
     for video_path in tqdm(video_list, desc='Video', ncols=80, leave=False):
         idx = video_path.as_uri().split('.')[0].split('/')[-1]
         file_name = idx + '.csv'
-        if file_name not in file_list:
+        if file_name not in file_list or replace:
             video2fea(video_path, data_folder)
 
 
 
 if __name__ == '__main__':
-    make_dataset(video_dir, data_folder)
+    make_dataset(video_dir, data_folder, True)
 
 
 # vsumm_data.close()
