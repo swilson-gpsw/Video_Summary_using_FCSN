@@ -123,6 +123,7 @@ def video2fea(video_path, data_folder):
 
     features:
     """
+    print(dname)
     try:
         fea = torch.stack(fea)
         np.savetxt(dname, fea, delimiter = ",", header = header)
