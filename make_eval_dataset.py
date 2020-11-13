@@ -12,7 +12,7 @@ import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--video_dir', type=str, help='directory containing mp4 file of specified dataset.', default='/mnt/hd02/CVPR/test/')
-parser.add_argument('--data_folder', type=str, help='save folder for data ', default='/mnt/hd02/random_highlights/CVPR/h5/')
+parser.add_argument('--data_folder', type=str, help='save folder for data ', default='/mnt/hd02/CVPR/results_timed/')
 # parser.add_argument('--vsumm_data', type=str, help='preprocessed dataset path from this repo: https://github.com/KaiyangZhou/pytorch-vsumm-reinforce, which should be a hdf5 file. We copy cps and some other info from it.', default='../data/eccv_datasets/eccv16_dataset_tvsum_google_pool5.h5')
 
 args = parser.parse_args()
