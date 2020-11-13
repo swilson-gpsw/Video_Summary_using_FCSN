@@ -70,7 +70,7 @@ def infer_model(model, data, config):
 if __name__ == "__main__":
     # data_fol = "/mnt/hd02/CVPR/csv_div320/"
     # files = [data_fol + fi for fi in os.listdir(data_fol)]
-    files = ['/mnt/hd02/CVPR/h5/594457e9546fd50001e4f637.csv']
+    files = ['/mnt/hd02/CVPR/csv_div320/594457e9546fd50001e4f637.csv']
 
     results_fol = '/mnt/hd02/CVPR/results_timed/'
     model = load_model()
